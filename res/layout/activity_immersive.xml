@@ -6,11 +6,44 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/L1"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:background="@color/clear"
+        android:fitsSystemWindows="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/left" />
+
+    <ImageButton
+        android:id="@+id/R2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/clear"
+        android:fitsSystemWindows="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/left" />
+
+    <ImageButton
+        android:id="@+id/L2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/clear"
+        android:fitsSystemWindows="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/left" />
+
+    <ImageButton
+        android:id="@+id/R1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:background="@color/clear"
         android:fitsSystemWindows="false"
         android:scaleType="fitCenter"
