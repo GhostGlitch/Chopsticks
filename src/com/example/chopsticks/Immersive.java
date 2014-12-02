@@ -203,22 +203,30 @@ public class Immersive extends Activity
 			cPos[0][(4 * i) + 2] = i;
 			cPos[0][(4 * i) + 3] = i;
 		}
-		cPos[0][0] = add(cPos[0][0], pPos[0][0]);
-		cPos[0][1] = add(cPos[0][1], pPos[1][0]);
-		cPos[1][2] = add(cPos[1][2], pPos[0][0]);
-		cPos[1][3] = add(cPos[1][3], pPos[1][0]);
-		cPos[0][4] = add(cPos[0][4], pPos[0][1]);
-		cPos[0][5] = add(cPos[0][5], pPos[1][1]);
-		cPos[1][6] = add(cPos[1][6], pPos[0][1]);
-		cPos[1][7] = add(cPos[1][7], pPos[1][1]);
-		cPos[0][8] = add(cPos[0][8], pPos[0][2]);
-		cPos[0][9] = add(cPos[0][9], pPos[1][2]);
-		cPos[1][10] = add(cPos[1][10], pPos[0][2]);
-		cPos[1][11] = add(cPos[1][11], pPos[1][2]);
-		cPos[0][12] = add(cPos[0][12], pPos[0][3]);
-		cPos[0][13] = add(cPos[0][13], pPos[1][3]);
-		cPos[1][14] = add(cPos[1][14], pPos[0][3]);
-		cPos[1][15] = add(cPos[1][15], pPos[1][3]);
+		for (int i = 0; i < 16; i++)
+		{
+			for (int i1 = 0; i1 < 4; i1++)
+			{
+				for (int i2=0; i2<2; i2++)
+		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
+		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
+		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
+			}
+			}
+		}
 		return cPos;
 	}
 }
