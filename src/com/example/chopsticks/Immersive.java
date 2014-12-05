@@ -156,7 +156,7 @@ public class Immersive extends Activity
 		});
 	}
 
-	private int add(int startVal, int addVal)
+	private static int add(int startVal, int addVal)
 	{
 		if (startVal > 5 | addVal > 5 | startVal < 0 | addVal < 0)
 			throw new IndexOutOfBoundsException();
@@ -165,68 +165,46 @@ public class Immersive extends Activity
 	}
 
 	@SuppressWarnings("unused")
-	private Array[][] dostuff(int[] thing)
+	private static int[][] dostuff(int[] thing)
 	{
 		/*
-		 * Player hand possibilities [index0][possibility#] // index0 0 = left
-		 * hand value / index0 1 = right hand value
+		 * Hand possibilities [index0][possibility#] // index0 2 = left hand
+		 * value / index0 3 = right hand value / index0 4 = move // move 0 =
+		 * cL-pL / move 1 = cL-pR / move 2 = cR-pL / move 3 = cR-pR
 		 */
-		int[][] pPos = new int[3][4];
-		for (int i = 0; i < 4; i++)
-		{
-			for (int hand = 0; hand < 2; hand++)
-			{
-				pPos[hand][i] = thing[hand];
-			}
-		}
-		pPos[0][0] = add(pPos[0][0], thing[2]);
-		pPos[1][1] = add(pPos[0][1], thing[2]);
-		pPos[0][2] = add(pPos[1][2], thing[3]);
-		pPos[1][3] = add(pPos[1][3], thing[3]);
-		/*
-		 * CPU hand possibilities [index0][possibility#] // index0 0 = left hand
-		 * value / index0 1 = right hand value / index0 2 = move // move 0 =
-		 * p2L-p1L / move 1 = p2L-p1R / move 1 = p2R-p1L / move 1 = p2R-p1R
-		 */
-		int[][] cPos = new int[3][16];
+		int[][] pos = new int[5][16];
 		for (int i = 0; i < 16; i++)
 		{
-			for (int hand = 0; hand < 2; hand++)
+			for (int hand = 0; hand < 4; hand++)
 			{
-				cPos[hand][i] = thing[hand+2];
+				pos[hand][i] = thing[hand];
 			}
 		}
 		for (int i = 0; i < 4; i++)
-		{
-			cPos[0][4 * i] = i;
-			cPos[0][(4 * i) + 1] = i;
-			cPos[0][(4 * i) + 2] = i;
-			cPos[0][(4 * i) + 3] = i;
-		}
-		for (int i = 0; i < 16; i++)
 		{
 			for (int i1 = 0; i1 < 4; i1++)
 			{
-				for (int i2=0; i2<2; i2++)
-		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[0][i1]);
-		cPos[0][i] = add(cPos[0][i], pPos[1][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[0][i1]);
-		cPos[1][i] = add(cPos[1][i], pPos[1][i1]);
-			}
+				pos[4][(4 * i) + i1] = i;
 			}
 		}
-		return cPos;
+		for (int i1 = 0; i1 < 4; i1++)
+		{
+			pos[0][(0) + i1] = add(pos[0][(0) + i1], thing[2]);
+			pos[1][(4) + i1] = add(pos[0][(4) + i1], thing[2]);
+			pos[0][(8) + i1] = add(pos[1][(8) + i1], thing[3]);
+			pos[1][(12) + i1] = add(pos[1][(12) + i1], thing[3]);
+		}
+		int i = 0;
+		for (int i1 = 0; i1 < 4; i1++)
+		{
+			for (int i2 = 2; i2 < 4; i2++)
+			{
+				for (int i3 = 0; i3 < 2; i3++, i++)
+				{
+					pos[i2][i] = add(pos[i2][i], pos[i3][i1 * 4]);
+				}
+			}
+		}
+		return pos;
 	}
 }
